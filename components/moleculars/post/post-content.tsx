@@ -1,3 +1,4 @@
+import { getReadingTime, getRelativeDate } from "@/lib/helper";
 import { Post } from "@/types/collection";
 import { ArrowRight } from "lucide-react";
 
@@ -9,7 +10,7 @@ const PostContent = ({ post }: PostContentProps) => {
   return (
     <div className="space-y-2">
       {/* tags  */}
-      <div className="flex items-center gap-2 text-sm text-neutral-400">
+      <div className="flex items-center gap-2 text-xs text-neutral-400 @md:text-sm">
         <div
           className={`font-medium ${
             post.category.title === "Cities"
@@ -19,15 +20,19 @@ const PostContent = ({ post }: PostContentProps) => {
         >
           {post.category.title}
         </div>
+        <div className="h-2 w-2  rounded-full bg-neutral-200" />
+        <div className="">{`${post.author.first_name} ${post.author.last_name}`}</div>
         <div className="h-2 w-2 rounded-full bg-neutral-200" />
-        <div>{`${post.author.first_name} ${post.author.last_name}`}</div>
+        <div className="">{getReadingTime(post.body)}</div>
         <div className="h-2 w-2 rounded-full bg-neutral-200" />
-        <div>1 min read</div>
-        <div className="h-2 w-2 rounded-full bg-neutral-200" />
-        <div>1 month ago</div>
+        <div className="">{getRelativeDate(post.date_created)}</div>
       </div>
-      <h2 className="text-3xl font-medium">{post.title}</h2>
-      <p className=" leading-snug text-neutral-600">{post.description}</p>
+      <h2 className="text-xl font-medium @md:text-2xl @lg:text-3xl">
+        {post.title}
+      </h2>
+      <p className="text-base leading-snug text-neutral-600 @lg:text-lg">
+        {post.description}
+      </p>
       <div className="flex items-center gap-2 pt-3">
         Read More <ArrowRight size={14} />
       </div>
