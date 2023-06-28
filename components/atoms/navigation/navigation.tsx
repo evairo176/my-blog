@@ -101,56 +101,13 @@ const Navigation = () => {
       
         <div className="flex-1">eef</div>
       </div> */}
-      <div>
-        <div className="sticky left-0 right-0 top-0 z-[999] border-b bg-white bg-opacity-70 backdrop-blur-md dark:border-none dark:bg-black">
-          <PaddingContainer>
-            <div className="flex items-center justify-between py-5">
-              <button
-                id="mobileMenuButton"
-                className="flex text-gray-300 hover:text-white focus:text-white focus:outline-none md:hidden"
-                onClick={toggleMobileMenu}
-              >
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-              <Link
-                className="text-lg font-bold dark:text-neutral-600"
-                href={"/"}
-              >
-                Explorer
-              </Link>
-              <nav className="hidden md:flex">
-                <ul className="items-center gap-4 text-neutral-500 md:flex">
-                  <li>
-                    <Link href="/cities">Cities</Link>
-                  </li>
-                  <li>
-                    <Link href="/experiences">Experiences</Link>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </PaddingContainer>
-        </div>
-        <aside
-          className={`fixed inset-0 z-[1000] w-64 transform border-b bg-white bg-opacity-70 backdrop-blur-md transition-transform duration-300 ease-in-out dark:border-none dark:bg-black ${
-            isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
-          } md:hidden`}
-        >
-          <div className=" h-16  px-4 py-4 text-right">
+
+      <div className="sticky left-0 right-0 top-0 z-[999] border-b bg-white bg-opacity-70 backdrop-blur-md dark:border-none dark:bg-black">
+        <PaddingContainer>
+          <div className="flex items-center justify-between py-5">
             <button
-              className=" text-gray-300 hover:text-neutral-400 focus:outline-none"
+              id="mobileMenuButton"
+              className="flex text-gray-300 hover:text-white focus:text-white focus:outline-none md:hidden"
               onClick={toggleMobileMenu}
             >
               <svg
@@ -163,27 +120,69 @@ const Navigation = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
+                  d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
             </button>
+            <Link
+              className="text-lg font-bold dark:text-neutral-600"
+              href={"/"}
+            >
+              Explorer
+            </Link>
+            <nav className="hidden md:flex">
+              <ul className="items-center gap-4 text-neutral-500 md:flex">
+                <li>
+                  <Link href="/cities">Cities</Link>
+                </li>
+                <li>
+                  <Link href="/experiences">Experiences</Link>
+                </li>
+              </ul>
+            </nav>
           </div>
-          <nav className="px-4 py-2" onClick={toggleMobileMenu}>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/cities" className="text-neutral-400">
-                  Cities
-                </Link>
-              </li>
-              <li>
-                <Link href="/experiences" className="text-neutral-400">
-                  Experiences
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </aside>
+        </PaddingContainer>
       </div>
+      <aside
+        className={`fixed inset-0 z-[1000] w-64 transform border-b bg-white bg-opacity-70 backdrop-blur-md transition-transform duration-300 ease-in-out dark:border-none dark:bg-black ${
+          isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
+        } md:hidden`}
+      >
+        <div className=" h-16  px-4 py-4 text-right">
+          <button
+            className=" text-gray-300 hover:text-neutral-400 focus:outline-none"
+            onClick={toggleMobileMenu}
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <nav className="px-4 py-2" onClick={toggleMobileMenu}>
+          <ul className="space-y-2">
+            <li>
+              <Link href="/cities" className="text-neutral-400">
+                Cities
+              </Link>
+            </li>
+            <li>
+              <Link href="/experiences" className="text-neutral-400">
+                Experiences
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </aside>
     </>
   );
 };
