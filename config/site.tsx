@@ -14,7 +14,7 @@ const siteConfig: SiteConfig = {
   siteName: "Explorer",
   description:
     "A minimal and lovely travel blog which shares experiences and cities around the world!",
-  currentlyAt: "Budapest",
+  currentlyAt: "Jakarta",
   socialLink: {
     github: "https://github.com/evairo176",
     website: "https://evairo-portofolio.vercel.app/",

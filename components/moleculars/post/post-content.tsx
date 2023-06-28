@@ -33,25 +33,26 @@ const PostContent = ({ post, isPostPage = false }: PostContentProps) => {
         <div className="h-2 w-2 rounded-full bg-neutral-200" />
         <div className="">{getRelativeDate(post.date_created)}</div>
       </div>
-      <Link href={`/post/${post.slug}`}>
-        <h2
-          className={`${
-            isPostPage
-              ? "text-2xl font-bold md:text-3xl lg:text-4xl"
-              : "text-xl @md:text-2xl @lg:text-3xl"
-          }  font-medium dark:text-neutral-300`}
-        >
-          {post.title}
-        </h2>
-      </Link>
+
+      <h2
+        className={`${
+          isPostPage
+            ? "text-2xl font-bold md:text-3xl lg:text-4xl"
+            : "text-xl @md:text-2xl @lg:text-3xl"
+        }  font-medium dark:text-neutral-300`}
+      >
+        {post.title}
+      </h2>
 
       <p className="line-clamp-2 overflow-hidden text-base leading-snug text-neutral-600 @lg:text-lg">
         {`${post.description}`}
       </p>
       {!isPostPage && (
-        <div className="flex items-center gap-2 pt-3">
-          Read More <ArrowRight size={14} />
-        </div>
+        <Link href={`/post/${post.slug}`}>
+          <div className="flex items-center gap-2 pt-3 transition-all duration-300 ease-in-out hover:gap-5">
+            Read More <ArrowRight size={14} />
+          </div>
+        </Link>
       )}
     </div>
   );
