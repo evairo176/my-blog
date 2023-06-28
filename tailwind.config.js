@@ -10,4 +10,5 @@ module.exports = {
     require("@tailwindcss/container-queries"),
     // ...
   ],
+  darkMode: "class",
 };

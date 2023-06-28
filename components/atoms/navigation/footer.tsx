@@ -6,10 +6,12 @@ import SocialLink from "../elements/social-link";
 
 const Footer = () => {
   return (
-    <div className="mt-10 border-t p-6">
+    <div className="mt-10 border-t pt-6">
       <PaddingContainer>
         <div>
-          <h2 className="text-3xl font-bold">{siteConfig.siteName}</h2>
+          <h2 className="text-3xl font-bold dark:text-neutral-300">
+            {siteConfig.siteName}
+          </h2>
           <p className="mt-2 max-w-md text-lg text-neutral-700">
             {siteConfig.description}
           </p>
@@ -17,7 +19,9 @@ const Footer = () => {
         {/* social media dan currently at  */}
         <div className="mt-6 flex flex-wrap justify-between gap-4">
           <div>
-            <div className="text-lg font-medium">#ExplorerTheWorld</div>
+            <div className="text-lg font-medium dark:text-neutral-400">
+              #ExplorerTheWorld
+            </div>
             <div className="mt-2 flex items-center gap-3 text-neutral-600">
               <SocialLink
                 platform="linkedin"
@@ -50,7 +54,7 @@ const Footer = () => {
           <div className="text-sm text-neutral-400">
             All rigths are reserved | copyright {new Date().getFullYear()}
           </div>
-          <div className="text-sm">
+          <div className="text-sm dark:text-neutral-400">
             Made with love{" "}
             <Link
               className="underline underline-offset-4"

@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 const PaddingContainer = ({ children }: { children: ReactNode }) => {
-  return <div className="px-8 w-full max-w-7xl mx-auto">{children}</div>;
+  return <div className="mx-auto w-full max-w-7xl px-8">{children}</div>;
 };
 
 export default PaddingContainer;

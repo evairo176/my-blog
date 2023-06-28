@@ -6,34 +6,33 @@ import PostContent from "./post-content";
 interface PostProps {
   post: Post;
   layout?: "vertical" | "horizontal";
-  reserve?: boolean;
+  reverse?: boolean;
 }
 
 const PostCard = ({
   post,
   layout = "horizontal",
-  reserve = false,
+  reverse = false,
 }: PostProps) => {
   return (
-    <Link
+    <div
       className={`@container ${
         layout === "horizontal"
           ? "grid grid-cols-1 items-center gap-10 md:grid-cols-2"
           : "space-y-10"
-      }`}
-      href={`/post/${post.slug}`}
+      } `}
     >
       <Image
-        className={`max-h-[300px] w-full rounded-md object-cover object-center ${
-          reserve ? "md:order-last" : ""
+        className={`max-h-[250px] rounded-md object-cover object-center   ${
+          reverse ? "md:order-last" : ""
         }`}
         src={post.image}
         alt={post.title}
         width={600}
-        height={300}
+        height={0}
       />
       <PostContent post={post} />
-    </Link>
+    </div>
   );
 };
 

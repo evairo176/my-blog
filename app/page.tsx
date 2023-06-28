@@ -14,7 +14,7 @@ export default function Home() {
           layout="vertical"
         />
         <CtaCard />
-        <PostCard reserve post={DUMMY_POSTS[3]} />
+        <PostCard reverse post={DUMMY_POSTS[3]} />
         <PostList
           posts={DUMMY_POSTS.filter((_post, index) => index > 3 && index < 6)}
           layout="vertical"
