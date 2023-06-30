@@ -10,7 +10,7 @@ const Footer = () => {
       <PaddingContainer>
         <div>
           <h2 className="text-3xl font-bold dark:text-neutral-300">
-            {siteConfig.siteName}
+            {siteConfig?.siteName}
           </h2>
           <p className="mt-2 max-w-md text-lg text-neutral-700">
             {siteConfig.description}

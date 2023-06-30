@@ -8,6 +8,10 @@ const nextConfig = {
         hostname: "images.unsplash.com",
         protocol: "https",
       },
+      {
+        hostname: "directus-production-0d91.up.railway.app",
+        protocol: "https",
+      },
     ],
   },
 };

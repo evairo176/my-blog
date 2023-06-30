@@ -12,7 +12,7 @@ const PostHero = ({ post }: postHeroProps) => {
       <PostContent isPostPage post={post} />
       <Image
         className="mt-6 h-[300px] rounded-md object-cover object-center md:h-[500px]"
-        src={post.image}
+        src={`${process.env.NEXT_PUBLIC_ASSETS_URL}${post.image}`}
         width={1200}
         height={500}
         alt={post.title}

@@ -1,6 +1,5 @@
 import { Post } from "@/types/collection";
 import Image from "next/image";
-import Link from "next/link";
 import PostContent from "./post-content";
 
 interface PostProps {
@@ -23,10 +22,10 @@ const PostCard = ({
       } `}
     >
       <Image
-        className={`max-h-[250px] rounded-md object-cover object-center   ${
+        className={`max-h-[250px] rounded-md object-cover object-center ${
           reverse ? "md:order-last" : ""
         }`}
-        src={post.image}
+        src={`${process.env.NEXT_PUBLIC_ASSETS_URL}${post.image}`}
         alt={post.title}
         width={600}
         height={0}
