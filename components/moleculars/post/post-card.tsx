@@ -28,7 +28,8 @@ const PostCard = ({
         src={`${process.env.NEXT_PUBLIC_ASSETS_URL}${post.image}`}
         alt={post.title}
         width={600}
-        height={0}
+        height={300}
+        priority
       />
       <PostContent post={post} />
     </div>

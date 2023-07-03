@@ -15,7 +15,9 @@ const PostHero = ({ post }: postHeroProps) => {
         src={`${process.env.NEXT_PUBLIC_ASSETS_URL}${post.image}`}
         width={1200}
         height={500}
+        priority={true}
         alt={post.title}
+        style={{ width: "100%", height: "auto" }}
       />
     </div>
   );

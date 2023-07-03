@@ -139,7 +139,7 @@ const Navigation = () => {
       >
         <div className=" h-16  px-4 py-4 text-right">
           <button
-            className=" text-gray-300 hover:text-neutral-400 focus:outline-none"
+            className="text-gray-300 hover:text-neutral-400 focus:outline-none"
             onClick={toggleMobileMenu}
           >
             <svg

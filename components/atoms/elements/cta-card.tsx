@@ -1,4 +1,5 @@
 import directus from "@/lib/directus";
+import { revalidateTag } from "next/cache";
 import Image from "next/image";
 
 const CtaCard = async () => {
@@ -8,17 +9,32 @@ const CtaCard = async () => {
     try {
       const email = formData.get("email");
 
-      console.log(email);
-      const cek = await directus.items("subscribers").createOne({
-        email: email,
+      //   console.log(email);
+      await directus.items("subscribers").createOne({
+        email,
       });
 
-      console.log(cek);
+      revalidateTag("subscribers-count");
+
+      //   console.log(cek);
     } catch (error) {
       console.log(error);
-      throw new Error("Form Error");
     }
   };
+
+  const subscribersCount = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}items/subscribers?meta=total_count&access_token=${process.env.ADMIN_TOKEN}`,
+    {
+      next: {
+        tags: ["subscribers-count"],
+      },
+    }
+  )
+    .then((res) => res.json())
+    .then((res) => res.meta.total_count)
+    .catch((error) => {
+      console.log(error);
+    });
 
   return (
     <div className="relative overflow-hidden rounded-md bg-slate-100 px-6 py-10">
@@ -39,7 +55,11 @@ const CtaCard = async () => {
           most of the great cities of 🇮🇩 and currently I'm travelling in 🇬🇸 Join
           me
         </p>
-        <form action={formAction} className="mt-6 flex items-center gap-2">
+        <form
+          key={subscribersCount + "subscribers-form"}
+          action={formAction}
+          className="mt-6 flex items-center gap-2"
+        >
           <input
             type="email"
             name="email"
@@ -50,6 +70,12 @@ const CtaCard = async () => {
             Sign up
           </button>
         </form>
+
+        <div className="mt-5 text-neutral-700">
+          Join our{" "}
+          <span className="rounded-md bg-neutral-700 px-2 py-1 text-sm text-neutral-100">{`${subscribersCount}`}</span>{" "}
+          Subscribers now!
+        </div>
       </div>
     </div>
   );
