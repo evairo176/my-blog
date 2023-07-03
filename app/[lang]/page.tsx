@@ -44,14 +44,16 @@ export default async function Home({
   return (
     <PaddingContainer>
       <main className="h-auto space-y-10">
-        <PostCard post={posts[0]} />
+        <PostCard locale={params.lang} post={posts[0]} />
         <PostList
+          locale={params.lang}
           posts={posts.filter((_post, index) => index > 0 && index < 3)}
           layout="vertical"
         />
-        <CtaCard />
-        <PostCard reverse post={posts[3]} />
+        <CtaCard locale={params.lang} />
+        <PostCard locale={params.lang} reverse post={posts[3]} />
         <PostList
+          locale={params.lang}
           posts={posts.filter((_post, index) => index > 3 && index < 6)}
           layout="vertical"
         />

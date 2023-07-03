@@ -1,15 +1,19 @@
-"use client";
+// "use client";
 import Link from "next/link";
 import PaddingContainer from "../layout/padding-container";
 import { useState } from "react";
 import { MenuIcon } from "lucide-react";
+import { getDictionary } from "@/lib/getDictionary";
 
-const Navigation = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const Navigation = async ({ locale }: { locale: string }) => {
+  //   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  //   const toggleMobileMenu = () => {
+  //     setIsMobileMenuOpen(!isMobileMenuOpen);
+  //   };
+
+  const dictionary = await getDictionary(locale);
+
   return (
     <>
       {/* <div className="flex">
@@ -106,33 +110,39 @@ const Navigation = () => {
       <div className="sticky left-0 right-0 top-0 z-[999] border-b bg-white bg-opacity-70 backdrop-blur-md dark:border-none dark:bg-black">
         <PaddingContainer>
           <div className="flex items-center justify-between py-5">
-            <button
+            {/* <button
               id="mobileMenuButton"
               className="flex text-neutral-800 hover:text-neutral-400 focus:text-neutral-400 focus:outline-none md:hidden"
               onClick={toggleMobileMenu}
             >
               <MenuIcon />
-            </button>
+            </button> */}
             <Link
               className="text-lg font-bold dark:text-neutral-600"
-              href={"/"}
+              href={`/${locale}`}
             >
               Explorer
             </Link>
-            <nav className="hidden md:flex">
-              <ul className="items-center gap-4 text-neutral-500 md:flex">
+            <nav className="">
+              {/* <nav className="hidden md:flex"> */}
+              <ul className="flex items-center gap-4 text-neutral-500">
+                {/* <ul className="items-center gap-4 text-neutral-500 md:flex"> */}
                 <li>
-                  <Link href="/cities">Cities</Link>
+                  <Link href={`/${locale}/cities`}>
+                    {dictionary.navigation.links.cities}
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/experiences">Experiences</Link>
+                  <Link href={`/${locale}/experiences`}>
+                    {dictionary.navigation.links.experiences}
+                  </Link>
                 </li>
               </ul>
             </nav>
           </div>
         </PaddingContainer>
       </div>
-      <aside
+      {/* <aside
         className={`fixed inset-0 z-[1000] w-64 transform border-b bg-white bg-opacity-70 backdrop-blur-md transition-transform duration-300 ease-in-out dark:border-none dark:bg-black ${
           isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
         } md:hidden`}
@@ -173,7 +183,7 @@ const Navigation = () => {
             </ul>
           </PaddingContainer>
         </nav>
-      </aside>
+      </aside> */}
     </>
   );
 };

@@ -6,12 +6,14 @@ interface PostProps {
   post: Post;
   layout?: "vertical" | "horizontal";
   reverse?: boolean;
+  locale: string;
 }
 
-const PostCard = ({
+const PostCard = async ({
   post,
   layout = "horizontal",
   reverse = false,
+  locale,
 }: PostProps) => {
   return (
     <div
@@ -31,7 +33,7 @@ const PostCard = ({
         height={300}
         priority
       />
-      <PostContent post={post} />
+      <PostContent locale={locale} post={post} />
     </div>
   );
 };

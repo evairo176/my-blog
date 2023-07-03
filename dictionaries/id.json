@@ -1,0 +1,25 @@
+{
+  "navigation": {
+    "links": {
+      "cities": "Kota",
+      "experiences": "Pengalaman"
+    }
+  },
+  "button": {
+    "readMore": "Selengkapnya"
+  },
+  "ctaCard": {
+    "title": "Jelajahi dunia bersamaku",
+    "description": "Jelajahi dunia bersamaku, aku sedang bepergian ke seluruh dunia 🌎. Aku sudah mengunjungi sebagian besar kota-kota besar di 🇮🇩 dan saat ini aku sedang melakukan perjalanan di 🇬🇸 Bergabunglah dengan saya",
+    "button": "Daftar",
+    "placeholder": "Tulis email kamu.",
+    "subscribersText1": "Bergabunglah dengan",
+    "subscribersText2": "pelanggan kami sekarang!"
+  },
+  "footer": {
+    "description": "Sebuah blog perjalanan minimalis dan indah yang berbagi pengalaman dan kota-kota di seluruh dunia!",
+    "rightText": "Seluruh hak cipta dilindungi | hak cipta",
+    "creatorText": "Dibuat dengan cinta oleh",
+    "currentlyAtText": "Saat ini berada di"
+  }
+}

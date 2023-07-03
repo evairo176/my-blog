@@ -40,6 +40,7 @@ const Category = async ({
 }: {
   params: {
     category: string;
+    lang: string;
   };
 }) => {
   //   const category = DUMMY_CATEGORIES.find(
@@ -99,7 +100,7 @@ const Category = async ({
           {typeCorrectedCategory?.description}
         </p>
       </div>
-      <PostList posts={typeCorrectedCategory.post} />
+      <PostList locale={params.lang} posts={typeCorrectedCategory.post} />
     </PaddingContainer>
   );
 };

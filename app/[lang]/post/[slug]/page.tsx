@@ -42,6 +42,7 @@ const Post = async ({
 }: {
   params: {
     slug: string;
+    lang: string;
   };
 }) => {
   // const post = DUMMY_POSTS.find((post) => post.slug === params.slug);
@@ -80,7 +81,7 @@ const Post = async ({
   return (
     <PaddingContainer>
       <div className="space-y-10">
-        <PostHero post={post} />
+        <PostHero locale={params.lang} post={post} />
         <div className="flex flex-col gap-5 md:flex-row">
           <div className="relative">
             <div className="sticky top-20  flex items-center gap-5   md:flex-col">
@@ -106,7 +107,7 @@ const Post = async ({
         </div>
       </div>
       <div className="p-2" />
-      <CtaCard />
+      <CtaCard locale={params.lang} />
     </PaddingContainer>
   );
 };
