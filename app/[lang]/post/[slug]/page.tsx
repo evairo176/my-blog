@@ -1,4 +1,4 @@
-import { DUMMY_POSTS } from "@/DUMMY_DATA";
+// import { DUMMY_POSTS } from "@/DUMMY_DATA";
 import CtaCard from "@/components/atoms/elements/cta-card";
 import SocialLink from "@/components/atoms/elements/social-link";
 import PaddingContainer from "@/components/atoms/layout/padding-container";

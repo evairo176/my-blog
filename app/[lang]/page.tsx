@@ -1,4 +1,4 @@
-import { DUMMY_POSTS } from "@/DUMMY_DATA";
+// import { DUMMY_POSTS } from "@/DUMMY_DATA";
 import CtaCard from "@/components/atoms/elements/cta-card";
 import PaddingContainer from "@/components/atoms/layout/padding-container";
 import PostCard from "@/components/moleculars/post/post-card";
@@ -6,7 +6,14 @@ import PostList from "@/components/moleculars/post/post-list";
 import directus from "@/lib/directus";
 import { notFound } from "next/navigation";
 
-export default async function Home() {
+export default async function Home({
+  params,
+}: {
+  params: {
+    lang: string;
+  };
+}) {
+  console.log(params);
   const getAllData = async () => {
     try {
       const post = await directus.items("post").readByQuery({
