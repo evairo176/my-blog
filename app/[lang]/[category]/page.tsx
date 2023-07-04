@@ -25,10 +25,20 @@ export const generateStaticParams = async () => {
     const params = categories?.data?.map((category) => {
       return {
         category: category.slug as string,
+        lang: "en",
       };
     });
 
-    return params || [];
+    const localisedParams = categories?.data?.map((category) => {
+      return {
+        category: category.slug as string,
+        lang: "id",
+      };
+    });
+
+    const allParams = params?.concat(localisedParams ?? []);
+
+    return allParams || [];
   } catch (error) {
     console.log(error);
     throw new Error("Error fetching categories");
@@ -61,15 +71,41 @@ const Category = async ({
         },
         fields: [
           "*",
+          "translations.*",
           "post.*",
           "post.author.id",
           "post.author.first_name",
           "post.author.last_name",
           "post.category.id",
           "post.category.title",
+          "post.translations.*",
         ],
       });
-      return category?.data?.[0];
+
+      if (params.lang === "en") {
+        return category?.data?.[0];
+      } else {
+        const fetchCategory = category?.data?.[0];
+
+        return {
+          ...fetchCategory,
+          title: fetchCategory?.translations[0].title,
+          description: fetchCategory?.translations[0].description,
+          post: fetchCategory?.post?.map((post: any) => {
+            return {
+              ...post,
+              title: post.translations[0].title,
+              description: post.translations[0].description,
+              body: post.translations[0].body,
+              category: {
+                ...post.category,
+                title: fetchCategory.translations[0].title,
+                description: fetchCategory.translations[0].description,
+              },
+            };
+          }),
+        };
+      }
     } catch (error) {
       console.log(error);
       throw new Error("Error fetching categories");

@@ -24,13 +24,34 @@ export default async function Home({
           "author.last_name",
           "category.id",
           "category.title",
+          "category.translations.*",
+          "translations.*",
         ],
       });
 
-      return post.data;
+      if (params.lang === "en") {
+        return post.data;
+      } else {
+        const localesPost = post?.data?.map((post) => {
+          return {
+            ...post,
+            title: post.translations[0].title,
+            description: post.translations[0].description,
+            body: post.translations[0].body,
+            category: {
+              ...post.category,
+              title: post.category.translations[0].title,
+              description: post.category.translations[0].description,
+            },
+          };
+        });
+
+        // console.log(localesPost);
+
+        return localesPost;
+      }
     } catch (error) {
       console.log(error);
-      throw new Error("Error fetching posts");
     }
   };
 

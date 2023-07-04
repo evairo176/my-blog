@@ -1,43 +1,43 @@
-import directus from "@/lib/directus";
+// import directus from "@/lib/directus";
 import { getDictionary } from "@/lib/getDictionary";
-import { revalidateTag } from "next/cache";
+// import { revalidateTag } from "next/cache";
 import Image from "next/image";
 
 const CtaCard = async ({ locale }: { locale: string }) => {
   const dictionary = await getDictionary(locale);
 
-  const formAction = async (formData: FormData) => {
-    "use server";
+  //   const formAction = async (formData: FormData) => {
+  //     "use server";
 
-    try {
-      const email = formData.get("email");
+  //     try {
+  //       const email = formData.get("email");
 
-      //   console.log(email);
-      await directus.items("subscribers").createOne({
-        email,
-      });
+  //       //   console.log(email);
+  //       await directus.items("subscribers").createOne({
+  //         email,
+  //       });
 
-      revalidateTag("subscribers-count");
+  //       revalidateTag("subscribers-count");
 
-      //   console.log(cek);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //       //   console.log(cek);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
-  const subscribersCount = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}items/subscribers?meta=total_count&access_token=${process.env.ADMIN_TOKEN}`,
-    {
-      next: {
-        tags: ["subscribers-count"],
-      },
-    }
-  )
-    .then((res) => res.json())
-    .then((res) => res.meta.total_count)
-    .catch((error) => {
-      console.log(error);
-    });
+  //   const subscribersCount = await fetch(
+  //     `${process.env.NEXT_PUBLIC_API_URL}items/subscribers?meta=total_count&access_token=${process.env.ADMIN_TOKEN}`,
+  //     {
+  //       next: {
+  //         tags: ["subscribers-count"],
+  //       },
+  //     }
+  //   )
+  //     .then((res) => res.json())
+  //     .then((res) => res.meta.total_count)
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
 
   return (
     <div className="relative overflow-hidden rounded-md bg-slate-100 px-6 py-10">
@@ -57,8 +57,8 @@ const CtaCard = async ({ locale }: { locale: string }) => {
           {dictionary.ctaCard.description}
         </p>
         <form
-          key={subscribersCount + "subscribers-form"}
-          action={formAction}
+          //   key={subscribersCount + "subscribers-form"}
+          //   action={formAction}
           className="mt-6 flex items-center gap-2"
         >
           <input
@@ -74,7 +74,8 @@ const CtaCard = async ({ locale }: { locale: string }) => {
 
         <div className="mt-5 text-neutral-700">
           {dictionary.ctaCard.subscribersText1}{" "}
-          <span className="rounded-md bg-neutral-700 px-2 py-1 text-sm text-neutral-100">{`${subscribersCount}`}</span>{" "}
+          <span className="rounded-md bg-neutral-700 px-2 py-1 text-sm text-neutral-100">{`12`}</span>{" "}
+          {/* <span className="rounded-md bg-neutral-700 px-2 py-1 text-sm text-neutral-100">{`${subscribersCount}`}</span>{" "} */}
           {dictionary.ctaCard.subscribersText2}
         </div>
       </div>

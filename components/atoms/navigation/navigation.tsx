@@ -4,6 +4,7 @@ import PaddingContainer from "../layout/padding-container";
 import { useState } from "react";
 import { MenuIcon } from "lucide-react";
 import { getDictionary } from "@/lib/getDictionary";
+import LangSwithcer from "./lang-switcher";
 
 const Navigation = async ({ locale }: { locale: string }) => {
   //   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -127,6 +128,9 @@ const Navigation = async ({ locale }: { locale: string }) => {
               {/* <nav className="hidden md:flex"> */}
               <ul className="flex items-center gap-4 text-neutral-500">
                 {/* <ul className="items-center gap-4 text-neutral-500 md:flex"> */}
+                <li>
+                  <LangSwithcer locale={locale} />
+                </li>
                 <li>
                   <Link href={`/${locale}/cities`}>
                     {dictionary.navigation.links.cities}
