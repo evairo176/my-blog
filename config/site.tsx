@@ -11,9 +11,9 @@ export interface SiteConfig {
 }
 
 const siteConfig: SiteConfig = {
-  siteName: "Explorer",
+  siteName: "My Blog and Portofolios",
   description:
-    "A minimal and lovely travel blog which shares experiences and cities around the world!",
+    "Welcome to my personal blog and portfolio showcase! This platform serves as a creative outlet for me to share my thoughts, experiences, and projects with the world. Whether you're looking for insightful articles, captivating stories, or a glimpse into my professional work, you'll find it all here. Join me on this journey as I explore various topics, showcase my skills, and engage with a diverse community of reader!",
   currentlyAt: "Jakarta",
   socialLink: {
     github: "https://github.com/evairo176",

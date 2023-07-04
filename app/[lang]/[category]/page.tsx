@@ -4,6 +4,74 @@ import PostList from "@/components/moleculars/post/post-list";
 import directus from "@/lib/directus";
 import { Post } from "@/types/collection";
 import { notFound } from "next/navigation";
+import { cache } from "react";
+
+export const generateMetadata = async ({
+  params: { category, lang },
+}: {
+  params: {
+    category: string;
+    lang: string;
+  };
+}) => {
+  const categoryData = await getAllCategories(category, lang);
+
+  return {
+    title: categoryData?.title,
+    description: categoryData?.description,
+  };
+};
+
+const getAllCategories = cache(async (categorySlug: string, locale: string) => {
+  try {
+    const category = await directus.items("category").readByQuery({
+      filter: {
+        slug: {
+          _eq: categorySlug,
+        },
+      },
+      fields: [
+        "*",
+        "translations.*",
+        "post.*",
+        "post.author.id",
+        "post.author.first_name",
+        "post.author.last_name",
+        "post.category.id",
+        "post.category.title",
+        "post.translations.*",
+      ],
+    });
+
+    if (locale === "en") {
+      return category?.data?.[0];
+    } else {
+      const fetchCategory = category?.data?.[0];
+
+      return {
+        ...fetchCategory,
+        title: fetchCategory?.translations[0].title,
+        description: fetchCategory?.translations[0].description,
+        post: fetchCategory?.post?.map((post: any) => {
+          return {
+            ...post,
+            title: post.translations[0].title,
+            description: post.translations[0].description,
+            body: post.translations[0].body,
+            category: {
+              ...post.category,
+              title: fetchCategory.translations[0].title,
+              description: fetchCategory.translations[0].description,
+            },
+          };
+        }),
+      };
+    }
+  } catch (error) {
+    console.log(error);
+    throw new Error("Error fetching categories");
+  }
+});
 
 export const generateStaticParams = async () => {
   //   return DUMMY_CATEGORIES.map((category) => {
@@ -61,58 +129,10 @@ const Category = async ({
   //     (post) => post.category.title.toLowerCase() === params.category
   //   );
 
-  const getAllCategories = async () => {
-    try {
-      const category = await directus.items("category").readByQuery({
-        filter: {
-          slug: {
-            _eq: params.category,
-          },
-        },
-        fields: [
-          "*",
-          "translations.*",
-          "post.*",
-          "post.author.id",
-          "post.author.first_name",
-          "post.author.last_name",
-          "post.category.id",
-          "post.category.title",
-          "post.translations.*",
-        ],
-      });
+  const locale = params.lang;
+  const categorySlug = params.category;
 
-      if (params.lang === "en") {
-        return category?.data?.[0];
-      } else {
-        const fetchCategory = category?.data?.[0];
-
-        return {
-          ...fetchCategory,
-          title: fetchCategory?.translations[0].title,
-          description: fetchCategory?.translations[0].description,
-          post: fetchCategory?.post?.map((post: any) => {
-            return {
-              ...post,
-              title: post.translations[0].title,
-              description: post.translations[0].description,
-              body: post.translations[0].body,
-              category: {
-                ...post.category,
-                title: fetchCategory.translations[0].title,
-                description: fetchCategory.translations[0].description,
-              },
-            };
-          }),
-        };
-      }
-    } catch (error) {
-      console.log(error);
-      throw new Error("Error fetching categories");
-    }
-  };
-
-  const category = await getAllCategories();
+  const category = await getAllCategories(categorySlug, locale);
 
   if (!category) {
     notFound();
