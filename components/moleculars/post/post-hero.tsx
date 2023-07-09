@@ -13,10 +13,10 @@ const PostHero = ({ post, locale }: postHeroProps) => {
       <PostContent locale={locale} isPostPage post={post} />
       <Image
         className="mt-6 h-[300px] rounded-md object-cover object-center md:h-[500px]"
-        src={`${process.env.NEXT_PUBLIC_ASSETS_URL}${post.image}`}
+        src={`${process.env.NEXT_PUBLIC_ASSETS_URL}${post.image}?key=optimised`}
         width={1200}
         height={500}
-        priority={true}
+        priority
         alt={post.title}
         style={{ width: "100%", height: "auto" }}
       />
