@@ -2,7 +2,7 @@ import Navigation from "@/components/atoms/navigation/navigation";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Footer from "@/components/atoms/navigation/footer";
-import { Metadata } from "next";
+// import { Metadata } from "next";
 import { getDictionary } from "@/lib/getDictionary";
 import siteConfig from "@/config/site";
 import Script from "next/script";
