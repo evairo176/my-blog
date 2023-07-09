@@ -70,6 +70,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang={lang}>
+      <meta
+        name="google-site-verification"
+        content="8xnhMuMJZnHzVBeWXO6w0Tt9AuOvkc8XpKP3DYOjNGk"
+      />
       <Script
         strategy="afterInteractive"
         src="https://www.googletagmanager.com/gtag/js?id=G-0MH6Y144Y6"
