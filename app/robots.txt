@@ -1,4 +1,4 @@
 User-Agent: *
-Allow: /sitemap.xml
+Allow: /
 
 Sitemap: https://evairo-blog.vercel.app/sitemap.xml
