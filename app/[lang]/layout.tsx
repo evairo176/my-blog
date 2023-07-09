@@ -5,6 +5,7 @@ import Footer from "@/components/atoms/navigation/footer";
 import { Metadata } from "next";
 import { getDictionary } from "@/lib/getDictionary";
 import siteConfig from "@/config/site";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +30,32 @@ export const generateMetadata = async ({
       default: siteConfig.siteName,
     },
     description: dictionary.footer.description,
+    openGraph: {
+      title: siteConfig.siteName,
+      description: dictionary.footer.description,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}`,
+      siteName: siteConfig.siteName,
+      images: [
+        {
+          url: "https://localhost:3001/opengraph-image.png",
+          width: 1200,
+          height: 628,
+        },
+      ],
+      locale: lang,
+      type: "website",
+    },
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}`,
+      languages: {
+        "en-US": `${process.env.NEXT_PUBLIC_SITE_URL}/en`,
+        "id-ID": `${process.env.NEXT_PUBLIC_SITE_URL}/id`,
+      },
+    },
+    // /* Verification for Google Search Console */
+    // verification: {
+    //   google: "phZgjAmXFUPB7WEa-ETZ3HfDj9tAifMO1VRJd7ybIQo",
+    // },
   };
 };
 
@@ -43,6 +70,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang={lang}>
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-0MH6Y144Y6"
+      ></Script>
+      <Script id="google-analytics">
+        {`  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0MH6Y144Y6');`}
+      </Script>
       <body className={`${inter.className} dark:bg-black`}>
         <Navigation locale={lang} />
         <div className="min-h-[calc(100vh - 300px)] pt-10">{children}</div>

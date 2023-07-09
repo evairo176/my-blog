@@ -4,6 +4,7 @@ import PaddingContainer from "@/components/atoms/layout/padding-container";
 import PostCard from "@/components/moleculars/post/post-card";
 import PostList from "@/components/moleculars/post/post-list";
 import directus from "@/lib/directus";
+import { getDictionary } from "@/lib/getDictionary";
 import { notFound } from "next/navigation";
 
 export default async function Home({
@@ -62,6 +63,8 @@ export default async function Home({
     notFound();
   }
 
+  const dictionary = await getDictionary(params.lang);
+
   return (
     <PaddingContainer>
       <main className="h-auto space-y-10">
@@ -71,7 +74,7 @@ export default async function Home({
           posts={posts.filter((_post, index) => index > 0 && index < 3)}
           layout="vertical"
         />
-        <CtaCard locale={params.lang} />
+        <CtaCard dictionary={dictionary} />
         <PostCard locale={params.lang} reverse post={posts[3]} />
         <PostList
           locale={params.lang}

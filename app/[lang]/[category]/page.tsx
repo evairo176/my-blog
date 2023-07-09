@@ -1,6 +1,7 @@
 import { DUMMY_CATEGORIES, DUMMY_POSTS } from "@/DUMMY_DATA";
 import PaddingContainer from "@/components/atoms/layout/padding-container";
 import PostList from "@/components/moleculars/post/post-list";
+import siteConfig from "@/config/site";
 import directus from "@/lib/directus";
 import { Post } from "@/types/collection";
 import { notFound } from "next/navigation";
@@ -19,59 +20,83 @@ export const generateMetadata = async ({
   return {
     title: categoryData?.title,
     description: categoryData?.description,
+    openGraph: {
+      title: categoryData?.title,
+      description: categoryData?.description,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/${category}`,
+      siteName: siteConfig.siteName,
+      // images: [
+      //   {
+      //     url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/${category}/opengraph-image.png`,
+      //     width: 1200,
+      //     height: 628,
+      //   },
+      // ],
+      locale: lang,
+      type: "website",
+    },
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${category}`,
+      languages: {
+        "en-US": `${process.env.NEXT_PUBLIC_SITE_URL}/en/${category}`,
+        "id-ID": `${process.env.NEXT_PUBLIC_SITE_URL}/id/${category}`,
+      },
+    },
   };
 };
 
-const getAllCategories = cache(async (categorySlug: string, locale: string) => {
-  try {
-    const category = await directus.items("category").readByQuery({
-      filter: {
-        slug: {
-          _eq: categorySlug,
+export const getAllCategories = cache(
+  async (categorySlug: string, locale: string) => {
+    try {
+      const category = await directus.items("category").readByQuery({
+        filter: {
+          slug: {
+            _eq: categorySlug,
+          },
         },
-      },
-      fields: [
-        "*",
-        "translations.*",
-        "post.*",
-        "post.author.id",
-        "post.author.first_name",
-        "post.author.last_name",
-        "post.category.id",
-        "post.category.title",
-        "post.translations.*",
-      ],
-    });
+        fields: [
+          "*",
+          "translations.*",
+          "post.*",
+          "post.author.id",
+          "post.author.first_name",
+          "post.author.last_name",
+          "post.category.id",
+          "post.category.title",
+          "post.translations.*",
+        ],
+      });
 
-    if (locale === "en") {
-      return category?.data?.[0];
-    } else {
-      const fetchCategory = category?.data?.[0];
+      if (locale === "en") {
+        return category?.data?.[0];
+      } else {
+        const fetchCategory = category?.data?.[0];
 
-      return {
-        ...fetchCategory,
-        title: fetchCategory?.translations[0].title,
-        description: fetchCategory?.translations[0].description,
-        post: fetchCategory?.post?.map((post: any) => {
-          return {
-            ...post,
-            title: post.translations[0].title,
-            description: post.translations[0].description,
-            body: post.translations[0].body,
-            category: {
-              ...post.category,
-              title: fetchCategory.translations[0].title,
-              description: fetchCategory.translations[0].description,
-            },
-          };
-        }),
-      };
+        return {
+          ...fetchCategory,
+          title: fetchCategory?.translations[0].title,
+          description: fetchCategory?.translations[0].description,
+          post: fetchCategory?.post?.map((post: any) => {
+            return {
+              ...post,
+              title: post.translations[0].title,
+              description: post.translations[0].description,
+              body: post.translations[0].body,
+              category: {
+                ...post.category,
+                title: fetchCategory.translations[0].title,
+                description: fetchCategory.translations[0].description,
+              },
+            };
+          }),
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      throw new Error("Error fetching categories");
     }
-  } catch (error) {
-    console.log(error);
-    throw new Error("Error fetching categories");
   }
-});
+);
 
 export const generateStaticParams = async () => {
   //   return DUMMY_CATEGORIES.map((category) => {
