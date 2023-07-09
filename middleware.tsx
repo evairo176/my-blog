@@ -29,7 +29,7 @@ export default function middleware(request: NextRequest) {
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
-
+    console.log({ locale });
     return NextResponse.redirect(
       new URL(`/${locale}/${pathname}`, request.url)
     );
@@ -46,6 +46,6 @@ export const config = {
    * - favicon.ico (favicon file)
    */
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|opengraph-image|robots.txt|sitemap).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|opengraph-image|robots.txt|sitemap|verification-file.html).*)",
   ],
 };
