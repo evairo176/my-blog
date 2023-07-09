@@ -51,6 +51,6 @@ export const config = {
   //   "/((?!api|_next/static|_next/image|favicon.ico|opengraph-image).*)",
   // ],
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|opengraph-image|robots.txt|sitemap|google-site-verification.txt).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|opengraph-image|robots.txt|sitemap).*)",
   ],
 };
