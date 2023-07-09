@@ -14,7 +14,7 @@ export default async function Home({
     lang: string;
   };
 }) {
-  console.log(params);
+  // console.log(params);
   const getAllData = async () => {
     try {
       const post = await directus.items("post").readByQuery({
