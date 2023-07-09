@@ -19,7 +19,7 @@ export const generateMetadata = async ({
   params: { lang },
 }: {
   params: {
-    lang: string;
+    lang?: string;
   };
 }) => {
   const dictionary = await getDictionary(lang);
