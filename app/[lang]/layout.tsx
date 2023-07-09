@@ -1,43 +1,42 @@
-import Navigation from "@/components/atoms/navigation/navigation";
-import "./globals.css";
-import { Inter } from "next/font/google";
-import Footer from "@/components/atoms/navigation/footer";
-import { Metadata } from "next";
-import { getDictionary } from "@/lib/getDictionary";
 import siteConfig from "@/config/site";
+import { getDictionary } from "@/lib/getDictionary";
+import { Inter } from "next/font/google";
 import Script from "next/script";
+import "./globals.css";
+import Navigation from "@/components/atoms/navigation/navigation";
+import Footer from "@/components/atoms/navigation/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// export const metadata: Metadata = {
-//   title: "My Blog and Portofolios",
-//   description:
-//     "Welcome to my personal blog and portfolio showcase! This platform serves as a creative outlet for me to share my thoughts, experiences, and projects with the world. Whether you're looking for insightful articles, captivating stories, or a glimpse into my professional work, you'll find it all here. Join me on this journey as I explore various topics, showcase my skills, and engage with a diverse community of reader",
-// };
+/* STATIC METADATA */
+/* export const metadata: Metadata = {
+  title: "Explorer",
+  description:
+    "A minimal and lovely travel blog which shares experiences and citiest around the world!",
+}; */
 
 export const generateMetadata = async ({
   params: { lang },
 }: {
-  params: {
-    lang: string;
-  };
+  params: { lang: string };
 }) => {
-  const dictionary = await getDictionary(lang);
+  // Get the Dicitionary based on Lang
+  const dicitionary = await getDictionary(lang);
 
   return {
     title: {
       template: "%s | " + siteConfig.siteName,
       default: siteConfig.siteName,
     },
-    description: dictionary.footer.description,
+    description: dicitionary.footer.description,
     openGraph: {
       title: siteConfig.siteName,
-      description: dictionary.footer.description,
+      description: dicitionary.footer.description,
       url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}`,
       siteName: siteConfig.siteName,
       images: [
         {
-          url: "https://localhost:3001/opengraph-image.png",
+          url: "https://localhost:3000/opengraph-image.png",
           width: 1200,
           height: 628,
         },
@@ -70,10 +69,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang={lang}>
-      <meta
-        name="google-site-verification"
-        content="8xnhMuMJZnHzVBeWXO6w0Tt9AuOvkc8XpKP3DYOjNGk"
-      />
       <Script
         strategy="afterInteractive"
         src="https://www.googletagmanager.com/gtag/js?id=G-0MH6Y144Y6"
