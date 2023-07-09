@@ -28,9 +28,6 @@ export const generateMetadata = async ({
   const dictionary = await getDictionary(lang);
 
   return {
-    verification: {
-      google: `8xnhMuMJZnHzVBeWXO6w0Tt9AuOvkc8XpKP3DYOjNGk`,
-    },
     title: {
       template: "%s | " + siteConfig.siteName,
       default: siteConfig.siteName,
@@ -59,6 +56,9 @@ export const generateMetadata = async ({
       },
     },
     /* Verification for Google Search Console */
+    verification: {
+      google: `8xnhMuMJZnHzVBeWXO6w0Tt9AuOvkc8XpKP3DYOjNGk`,
+    },
   };
 };
 

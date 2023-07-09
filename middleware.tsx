@@ -1,6 +1,5 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 import { i18n } from "./i18n.config";
@@ -46,10 +45,6 @@ export const config = {
    * - _next/image (image optimization files)
    * - favicon.ico (favicon file)
    */
-
-  // matcher: [
-  //   "/((?!api|_next/static|_next/image|favicon.ico|opengraph-image).*)",
-  // ],
   matcher: [
     "/((?!api|_next/static|_next/image|favicon.ico|opengraph-image|robots.txt|sitemap).*)",
   ],
