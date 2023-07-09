@@ -12,15 +12,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const postLinks = posts?.data?.map((post) => {
     return [
       {
-        url: `${baseURL}/en/blog/${post.slug}`,
+        url: `${baseURL}/en/post/${post.slug}`,
         lastModified: new Date(post.date_updated),
       },
       {
-        url: `${baseURL}/id/blog/${post.slug}`,
+        url: `${baseURL}/id/post/${post.slug}`,
         lastModified: new Date(post.date_updated),
       },
       {
-        url: `${baseURL}/blog/${post.slug}`,
+        url: `${baseURL}/post/${post.slug}`,
         lastModified: new Date(post.date_updated),
       },
     ];
