@@ -9,20 +9,20 @@ import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "My Blog and Portofolios",
-  description:
-    "Welcome to my personal blog and portfolio showcase! This platform serves as a creative outlet for me to share my thoughts, experiences, and projects with the world. Whether you're looking for insightful articles, captivating stories, or a glimpse into my professional work, you'll find it all here. Join me on this journey as I explore various topics, showcase my skills, and engage with a diverse community of reader",
-  verification: {
-    google: "8xnhMuMJZnHzVBeWXO6w0Tt9AuOvkc8XpKP3DYOjNGk",
-  },
-};
+// export const metadata: Metadata = {
+//   title: "My Blog and Portofolios",
+//   description:
+//     "Welcome to my personal blog and portfolio showcase! This platform serves as a creative outlet for me to share my thoughts, experiences, and projects with the world. Whether you're looking for insightful articles, captivating stories, or a glimpse into my professional work, you'll find it all here. Join me on this journey as I explore various topics, showcase my skills, and engage with a diverse community of reader",
+//   verification: {
+//     google: "8xnhMuMJZnHzVBeWXO6w0Tt9AuOvkc8XpKP3DYOjNGk",
+//   },
+// };
 
 export const generateMetadata = async ({
   params: { lang },
 }: {
   params: {
-    lang?: string;
+    lang: string;
   };
 }) => {
   const dictionary = await getDictionary(lang);
