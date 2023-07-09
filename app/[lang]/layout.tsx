@@ -52,10 +52,10 @@ export const generateMetadata = async ({
         "id-ID": `${process.env.NEXT_PUBLIC_SITE_URL}/id`,
       },
     },
-    // /* Verification for Google Search Console */
-    // verification: {
-    //   google: "phZgjAmXFUPB7WEa-ETZ3HfDj9tAifMO1VRJd7ybIQo",
-    // },
+    /* Verification for Google Search Console */
+    verification: {
+      google: "phZgjAmXFUPB7WEa-ETZ3HfDj9tAifMO1VRJd7ybIQo",
+    },
   };
 };
 
