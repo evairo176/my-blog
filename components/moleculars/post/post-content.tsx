@@ -27,7 +27,8 @@ const PostContent = async ({
       >
         <div
           className={`font-medium  ${
-            post.category.title === "Cities"
+            post.category.title === "Cities" ||
+            post.category.title === "Kota-kota"
               ? "text-emerald-600"
               : "text-indigo-600"
           }`}

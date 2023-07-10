@@ -20,8 +20,8 @@ const LangSwithcer = ({ locale }: { locale: string }) => {
       locale={targetLanguage}
       href={redirectTarget()}
     >
-      <span>{targetLanguage === "en" ? "🇬🇧" : "🇮🇩"}</span>
       {targetLanguage.toUpperCase()}
+      <span>{targetLanguage === "en" ? "🇬🇧" : "🇮🇩"}</span>
     </Link>
   );
 };
