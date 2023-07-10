@@ -105,6 +105,8 @@ export const generateStaticParams = async () => {
   //     };
   //   });
 
+  // komen
+
   try {
     const categories = await directus.items("category").readByQuery({
       filter: {
