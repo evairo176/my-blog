@@ -1,6 +1,5 @@
 import directus from "@/lib/directus";
 import { MetadataRoute } from "next";
-import { format } from "date-fns";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseURL = process.env.NEXT_PUBLIC_SITE_URL as string;
@@ -13,16 +12,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const postLinks = posts?.data?.map((post) => {
     return [
       {
-        url: `${baseURL}/en/post/${post.slug}`,
-        lastModified: format(new Date(post.date_updated), "yyyy-MM-dd"),
+        url: `${baseURL}/en/blog/${post.slug}`,
+        lastModified: new Date(post.date_updated),
       },
       {
-        url: `${baseURL}/id/post/${post.slug}`,
-        lastModified: format(new Date(post.date_updated), "yyyy-MM-dd"),
+        url: `${baseURL}/de/blog/${post.slug}`,
+        lastModified: new Date(post.date_updated),
       },
       {
-        url: `${baseURL}/post/${post.slug}`,
-        lastModified: format(new Date(post.date_updated), "yyyy-MM-dd"),
+        url: `${baseURL}/blog/${post.slug}`,
+        lastModified: new Date(post.date_updated),
       },
     ];
   });
@@ -36,15 +35,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return [
       {
         url: `${baseURL}/en/${category.slug}`,
-        lastModified: format(new Date(), "yyyy-MM-dd"),
+        lastModified: new Date(),
       },
       {
-        url: `${baseURL}/id/${category.slug}`,
-        lastModified: format(new Date(), "yyyy-MM-dd"),
+        url: `${baseURL}/de/${category.slug}`,
+        lastModified: new Date(),
       },
       {
         url: `${baseURL}/${category.slug}`,
-        lastModified: format(new Date(), "yyyy-MM-dd"),
+        lastModified: new Date(),
       },
     ];
   });
@@ -54,15 +53,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     {
       url: baseURL,
-      lastModified: format(new Date(), "yyyy-MM-dd"),
+      lastModified: new Date(),
     },
     {
       url: `${baseURL}/en`,
-      lastModified: format(new Date(), "yyyy-MM-dd"),
+      lastModified: new Date(),
     },
     {
-      url: `${baseURL}/id`,
-      lastModified: format(new Date(), "yyyy-MM-dd"),
+      url: `${baseURL}/de`,
+      lastModified: new Date(),
     },
     ...dynamicLinks,
   ];
