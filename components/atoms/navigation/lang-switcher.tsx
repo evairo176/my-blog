@@ -13,7 +13,7 @@ const LangSwithcer = ({ locale }: { locale: string }) => {
     segments[1] = targetLanguage;
     return segments.join("/");
   };
-
+  // come
   return (
     <Link
       className="flex items-center gap-1 font-semibold"
