@@ -53,7 +53,11 @@ const PostContent = async ({
         {post.title}
       </h2>
 
-      <p className="line-clamp-2 overflow-hidden text-base leading-snug text-neutral-600 @lg:text-lg">
+      <p
+        className={`${
+          !isPostPage && "line-clamp-2"
+        } overflow-hidden text-justify text-base leading-snug text-neutral-600 @lg:text-lg`}
+      >
         {`${post.description}`}
       </p>
       {!isPostPage && (
