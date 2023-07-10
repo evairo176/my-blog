@@ -46,6 +46,9 @@ export const config = {
    * - favicon.ico (favicon file)
    */
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|opengraph-image|robots.txt|googlee9fdaab4d829d3e3.html|sitemap).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|opengraph-image|robots.txt|sitemap).*)",
   ],
+  // matcher: [
+  //   "/((?!api|_next/static|_next/image|favicon.ico|opengraph-image|robots.txt|googlee9fdaab4d829d3e3.html|sitemap).*)",
+  // ],
 };
