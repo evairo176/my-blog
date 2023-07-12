@@ -17,6 +17,32 @@ const PostContent = async ({
 }: PostContentProps) => {
   const dictionary = await getDictionary(locale);
 
+  const categoryColor = (language: string, category: string) => {
+    if (language === "id") {
+      switch (category) {
+        case "Kota-kota":
+          return "text-emerald-600";
+        case "Pengalaman":
+          return "text-indigo-600";
+        case "Teknologi":
+          return "text-blue-600";
+        default:
+          return;
+      }
+    } else {
+      switch (category) {
+        case "Cities":
+          return "text-emerald-600";
+        case "Experiences":
+          return "text-indigo-600";
+        case "Technology":
+          return "text-blue-600";
+        default:
+          return;
+      }
+    }
+  };
+
   return (
     <div className="space-y-2">
       {/* tags  */}
@@ -26,12 +52,10 @@ const PostContent = async ({
         } `}
       >
         <div
-          className={`font-medium  ${
-            post.category.title === "Cities" ||
-            post.category.title === "Kota-kota"
-              ? "text-emerald-600"
-              : "text-indigo-600"
-          }`}
+          className={`font-medium  ${categoryColor(
+            locale,
+            post.category.title
+          )}`}
         >
           {post.category.title}
         </div>
