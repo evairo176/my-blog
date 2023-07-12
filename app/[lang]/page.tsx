@@ -65,6 +65,12 @@ export default async function Home({
 
   const dictionary = await getDictionary(params.lang);
 
+  // const getRandomValue = () => {
+  //   const randomIndex = Math.floor(Math.random() * posts.length);
+  //   const randomValue = posts[randomIndex];
+  //   return randomValue;
+  // };
+
   return (
     <PaddingContainer>
       <main className="h-auto space-y-10">
@@ -78,7 +84,7 @@ export default async function Home({
         <PostCard locale={params.lang} reverse post={posts[3]} />
         <PostList
           locale={params.lang}
-          posts={posts.filter((_post, index) => index > 3 && index < 6)}
+          posts={posts.filter((_post, index) => index > 3)}
           layout="vertical"
         />
       </main>

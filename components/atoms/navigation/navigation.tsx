@@ -1,24 +1,51 @@
-// "use client";
+"use client";
 import Link from "next/link";
 import PaddingContainer from "../layout/padding-container";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MenuIcon } from "lucide-react";
 import { getDictionary } from "@/lib/getDictionary";
 import LangSwithcer from "./lang-switcher";
 
-const Navigation = async ({ locale }: { locale: string }) => {
-  //   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const Navigation = ({ locale }: { locale: string }) => {
+  interface DictionaryType {
+    navigation?: {
+      links?: {
+        experiences?: string;
+        cities?: string;
+        technology?: string;
+        // Add other properties if needed
+      };
+      // Add other properties if needed
+    };
+    // Add other properties if needed
+  }
 
-  //   const toggleMobileMenu = () => {
-  //     setIsMobileMenuOpen(!isMobileMenuOpen);
-  //   };
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const dictionary = await getDictionary(locale);
+  const [dictionary, setDictionary] = useState<DictionaryType>({});
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  useEffect(() => {
+    getDictionaryFunc();
+  }, []);
+
+  const getDictionaryFunc = async () => {
+    await getDictionary(locale)
+      .then((result) => {
+        setDictionary(result);
+        // console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <>
       {/* <div className="flex">
-  
         <button
           id="mobileMenuButton"
           className="text-gray-300 hover:text-white focus:text-white focus:outline-none sm:hidden"
@@ -39,7 +66,6 @@ const Navigation = async ({ locale }: { locale: string }) => {
           </svg>
         </button>
 
-       
         <aside
           className={`fixed inset-0 z-50 w-64 transform bg-gray-800 text-white transition-transform duration-300 ease-in-out ${
             isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
@@ -103,29 +129,26 @@ const Navigation = async ({ locale }: { locale: string }) => {
             </ul>
           </nav>
         </aside>
-
-      
-        <div className="flex-1">eef</div>
       </div> */}
 
       <div className="sticky left-0 right-0 top-0 z-[999] border-b bg-white bg-opacity-70 backdrop-blur-md dark:border-none dark:bg-black">
         <PaddingContainer>
           <div className="flex items-center justify-between py-5">
-            {/* <button
+            <button
               id="mobileMenuButton"
               className="flex text-neutral-800 hover:text-neutral-400 focus:text-neutral-400 focus:outline-none md:hidden"
               onClick={toggleMobileMenu}
             >
               <MenuIcon />
-            </button> */}
+            </button>
             <Link
               className="text-lg font-bold dark:text-neutral-600"
               href={`/${locale}`}
             >
               Explorer
             </Link>
-            <nav className="">
-              {/* <nav className="hidden md:flex"> */}
+            {/* <nav className=""> */}
+            <nav className="hidden md:flex">
               <ul className="flex items-center gap-4 text-neutral-500">
                 {/* <ul className="items-center gap-4 text-neutral-500 md:flex"> */}
                 <li>
@@ -133,12 +156,17 @@ const Navigation = async ({ locale }: { locale: string }) => {
                 </li>
                 <li>
                   <Link href={`/${locale}/cities`}>
-                    {dictionary.navigation.links.cities}
+                    {dictionary?.navigation?.links?.cities}
                   </Link>
                 </li>
                 <li>
                   <Link href={`/${locale}/experiences`}>
-                    {dictionary.navigation.links.experiences}
+                    {dictionary?.navigation?.links?.experiences}
+                  </Link>
+                </li>
+                <li>
+                  <Link href={`/${locale}/technology`}>
+                    {dictionary?.navigation?.links?.technology}
                   </Link>
                 </li>
               </ul>
@@ -146,7 +174,7 @@ const Navigation = async ({ locale }: { locale: string }) => {
           </div>
         </PaddingContainer>
       </div>
-      {/* <aside
+      <aside
         className={`fixed inset-0 z-[1000] w-64 transform border-b bg-white bg-opacity-70 backdrop-blur-md transition-transform duration-300 ease-in-out dark:border-none dark:bg-black ${
           isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
         } md:hidden`}
@@ -175,19 +203,33 @@ const Navigation = async ({ locale }: { locale: string }) => {
           <PaddingContainer>
             <ul className="space-y-3">
               <li>
-                <Link href="/cities" className="text-neutral-800">
-                  Cities
+                <LangSwithcer locale={locale} />
+              </li>
+              <li>
+                <Link className="text-neutral-800" href={`/${locale}/cities`}>
+                  {dictionary?.navigation?.links?.cities}
                 </Link>
               </li>
               <li>
-                <Link href="/experiences" className="text-neutral-800">
-                  Experiences
+                <Link
+                  className="text-neutral-800"
+                  href={`/${locale}/experiences`}
+                >
+                  {dictionary?.navigation?.links?.experiences}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="text-neutral-800"
+                  href={`/${locale}/technology`}
+                >
+                  {dictionary?.navigation?.links?.technology}
                 </Link>
               </li>
             </ul>
           </PaddingContainer>
         </nav>
-      </aside> */}
+      </aside>
     </>
   );
 };
