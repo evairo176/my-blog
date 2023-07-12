@@ -12,15 +12,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const postLinks = posts?.data?.map((post) => {
     return [
       {
-        url: `${baseURL}/en/blog/${post.slug}`,
+        url: `${baseURL}/en/post/${post.slug}`,
         lastModified: new Date(post.date_updated),
       },
       {
-        url: `${baseURL}/de/blog/${post.slug}`,
+        url: `${baseURL}/id/post/${post.slug}`,
         lastModified: new Date(post.date_updated),
       },
       {
-        url: `${baseURL}/blog/${post.slug}`,
+        url: `${baseURL}/post/${post.slug}`,
         lastModified: new Date(post.date_updated),
       },
     ];
@@ -38,7 +38,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
       },
       {
-        url: `${baseURL}/de/${category.slug}`,
+        url: `${baseURL}/id/${category.slug}`,
         lastModified: new Date(),
       },
       {
@@ -60,7 +60,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
     },
     {
-      url: `${baseURL}/de`,
+      url: `${baseURL}/id`,
       lastModified: new Date(),
     },
     ...dynamicLinks,
