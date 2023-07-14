@@ -12,7 +12,11 @@
   }
 
   .rich-text p {
-    @apply mb-3 text-justify leading-snug text-neutral-700;
+    @apply mb-3 text-justify leading-snug text-neutral-600;
+  }
+
+  .rich-text strong {
+    @apply mb-3 text-justify leading-snug text-neutral-600;
   }
 
   .rich-text pre {
