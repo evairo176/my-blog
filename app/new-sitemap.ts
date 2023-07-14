@@ -48,7 +48,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
   });
 
-  // get all url
   const dynamicLinks = postLinks?.concat(categoryLinks ?? []).flat() ?? [];
 
   return [
