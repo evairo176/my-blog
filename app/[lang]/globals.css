@@ -14,4 +14,8 @@
   .rich-text p {
     @apply mb-3 text-justify leading-snug text-neutral-700;
   }
+
+  .rich-text pre {
+    @apply mb-3 mt-3 overflow-y-auto rounded-md bg-gray-800 p-2 text-justify leading-snug text-gray-200;
+  }
 }
